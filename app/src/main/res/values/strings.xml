@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">aplicaciones_moviles_momento_2</string>
+
+    <string name="code_placeholder">Código</string>
+    <string name="address_placeholder">Dirección</string>
+    <string name="phone_placeholder">Teléfono</string>
+
+    <string name="rooms_placeholder">No. habitaciones</string>
+    <string name="assembly_room_placeholder">Tiene sala de asambleas?</string>
+
+    <string name="add_property_description">Agrega los datos necesarios para guardar un nuevo inmueble</string>
+
+    <string name="save_btn">Guardar</string>
+
+    <string name="property_saved">Propiedad creada con exito</string>
+
+    <string name="add_house_title">Agregar Casa</string>
+    <string name="add_office_title">Agregar Oficina</string>
 </resources>
