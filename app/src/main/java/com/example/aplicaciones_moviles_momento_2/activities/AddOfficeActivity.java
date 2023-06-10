@@ -2,6 +2,7 @@ package com.example.aplicaciones_moviles_momento_2.activities;
 
 import android.os.Bundle;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.example.aplicaciones_moviles_momento_2.R;
 import com.example.aplicaciones_moviles_momento_2.models.Inmueble;
@@ -9,6 +10,8 @@ import com.example.aplicaciones_moviles_momento_2.models.Oficina;
 import com.example.aplicaciones_moviles_momento_2.utils.ValidationException;
 
 public class AddOfficeActivity extends AddPropertyActivity {
+    ToggleButton btnAssemblyRoom;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +24,8 @@ public class AddOfficeActivity extends AddPropertyActivity {
     @Override
     protected void setViewComponents() {
         super.setViewComponents();
+        btnAssemblyRoom = findViewById(R.id.btnAssemblyRoom);
+
         setOnClickListeners();
     }
 
@@ -28,7 +33,7 @@ public class AddOfficeActivity extends AddPropertyActivity {
     protected void createProperty() {
         try {
             Inmueble property = tryToCreateBaseProperty();
-            boolean hasAssemblyRoom = true;
+            boolean hasAssemblyRoom = btnAssemblyRoom.isChecked();
 
             save(new Oficina(property, hasAssemblyRoom));
 

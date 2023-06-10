@@ -63,6 +63,17 @@
         android:inputType="phone"
         android:minHeight="48dp"/>
 
+    <ToggleButton
+        android:id="@+id/btnAssemblyRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtPhone"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:checked="true"
+        android:textOff="@string/assembly_room_placeholder_off"
+        android:textOn="@string/assembly_room_placeholder_on"/>
+
     <Button
         android:id="@+id/btnSave"
         android:layout_alignParentBottom="true"

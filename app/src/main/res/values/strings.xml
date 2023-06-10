@@ -6,7 +6,8 @@
     <string name="phone_placeholder">Teléfono</string>
 
     <string name="rooms_placeholder">No. habitaciones</string>
-    <string name="assembly_room_placeholder">Tiene sala de asambleas?</string>
+    <string name="assembly_room_placeholder_on">Con sala de asambleas</string>
+    <string name="assembly_room_placeholder_off">Sin sala de asambleas</string>
 
     <string name="add_property_description">Agrega los datos necesarios para guardar un nuevo inmueble</string>
 
