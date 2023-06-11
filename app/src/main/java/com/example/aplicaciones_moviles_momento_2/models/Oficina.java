@@ -8,6 +8,10 @@ public class Oficina extends Inmueble{
         this.salaAsamblea = salaAsamblea;
     }
 
+    public boolean isSalaAsamblea() {
+        return salaAsamblea;
+    }
+
     public void instalarInternet() {
 
     }

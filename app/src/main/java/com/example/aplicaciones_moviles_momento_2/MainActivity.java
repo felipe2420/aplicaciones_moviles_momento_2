@@ -1,6 +1,8 @@
 package com.example.aplicaciones_moviles_momento_2;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -9,8 +11,11 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.aplicaciones_moviles_momento_2.activities.AddHouseActivity;
 import com.example.aplicaciones_moviles_momento_2.activities.AddOfficeActivity;
 import com.example.aplicaciones_moviles_momento_2.activities.AppActivity;
+import com.example.aplicaciones_moviles_momento_2.activities.DetailHouseActivity;
+import com.example.aplicaciones_moviles_momento_2.activities.DetailOfficeActivity;
 import com.example.aplicaciones_moviles_momento_2.activities.components.PropertyListAdapter;
 import com.example.aplicaciones_moviles_momento_2.datasource.InmueblesDB;
+import com.example.aplicaciones_moviles_momento_2.models.Casa;
 import com.example.aplicaciones_moviles_momento_2.models.Inmueble;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -46,6 +51,17 @@ public class MainActivity extends AppActivity {
     private void setOnClickListeners(){
         btnAddHouse.setOnClickListener(view -> navigate(AddHouseActivity.class));
         btnAddOffice.setOnClickListener(view -> navigate(AddOfficeActivity.class));
+
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            Inmueble property = InmueblesDB.data.get(position);
+            InmueblesDB.selectedProperty = property;
+
+            if(property instanceof Casa) {
+                navigate(DetailHouseActivity.class);
+            } else {
+                navigate(DetailOfficeActivity.class);
+            }
+        });
     }
 
     private void setupListView() {

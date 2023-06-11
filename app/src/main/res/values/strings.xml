@@ -9,12 +9,27 @@
     <string name="assembly_room_placeholder_on">Con sala de asambleas</string>
     <string name="assembly_room_placeholder_off">Sin sala de asambleas</string>
 
+    <string name="rooms_number_placeholder">Nro. Habitaciones: </string>
+
     <string name="add_property_description">Agrega los datos necesarios para guardar un nuevo inmueble</string>
 
     <string name="save_btn">Guardar</string>
+    <string name="continue_btn">Continuar</string>
+    <string name="cancel_btn">Cancelar</string>
+
+    <string name="repair_garden_btn">Reparar jardín</string>
+    <string name="install_wifi_btn">Instalar internet</string>
+
+    <string name="file_property_btn">Radicar inmueble</string>
+    <string name="rent_property_btn">Arrendar inmueble</string>
 
     <string name="property_saved">Propiedad creada con exito</string>
 
     <string name="add_house_title">Agregar Casa</string>
     <string name="add_office_title">Agregar Oficina</string>
+    <string name="detail_office_title">Detalle Oficina</string>
+    <string name="detail_house_title">Detalle Casa</string>
+
+    <string name="rent_confirmation_message">Ingrese el código para arrendar el inmueble</string>
+    <string name="file_property_confirmation_message">Ingrese el código para radicar el inmueble</string>
 </resources>

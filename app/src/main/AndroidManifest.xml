@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Aplicaciones_moviles_momento_2"
         tools:targetApi="31">
         <activity
+            android:name=".activities.DetailOfficeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.DetailHouseActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.AddOfficeActivity"
             android:exported="false" />
         <activity

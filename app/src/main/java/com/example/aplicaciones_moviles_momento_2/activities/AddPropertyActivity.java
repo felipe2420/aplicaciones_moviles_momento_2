@@ -18,8 +18,6 @@ public class AddPropertyActivity extends NavigationActivity {
         txtCode = findViewById(R.id.txtCode);
         txtAddress = findViewById(R.id.txtAddress);
         txtPhone = findViewById(R.id.txtPhone);
-
-        btnSave = findViewById(R.id.btnSave);
     }
 
     protected void setOnClickListeners(){
