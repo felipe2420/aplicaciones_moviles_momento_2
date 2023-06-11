@@ -5,7 +5,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.aplicaciones_moviles_momento_2.R;
-import com.example.aplicaciones_moviles_momento_2.datasource.InmueblesDB;
+import com.example.aplicaciones_moviles_momento_2.datasource.InmueblesDataSource;
 import com.example.aplicaciones_moviles_momento_2.models.Inmueble;
 import com.example.aplicaciones_moviles_momento_2.utils.ValidationException;
 
@@ -29,7 +29,7 @@ public class AddPropertyActivity extends NavigationActivity {
     protected void save(Inmueble property) throws ValidationException {
         validateIfExists(property.getCodigo());
 
-        InmueblesDB.data.add(property);
+        InmueblesDataSource.data.add(property);
     }
     protected Inmueble tryToCreateBaseProperty() throws ValidationException {
         int code = tryGetCode();
@@ -79,7 +79,7 @@ public class AddPropertyActivity extends NavigationActivity {
     }
 
     private void validateIfExists(int code) throws ValidationException{
-        Inmueble result = InmueblesDB.data.stream()
+        Inmueble result = InmueblesDataSource.data.stream()
                 .filter(item -> item.getCodigo() == code)
                 .findFirst()
                 .orElse(null);

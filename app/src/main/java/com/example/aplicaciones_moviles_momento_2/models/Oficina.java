@@ -1,5 +1,7 @@
 package com.example.aplicaciones_moviles_momento_2.models;
 
+import com.example.aplicaciones_moviles_momento_2.datasource.InmueblesDataSource;
+
 public class Oficina extends Inmueble{
     private boolean salaAsamblea;
 
@@ -13,6 +15,6 @@ public class Oficina extends Inmueble{
     }
 
     public void instalarInternet() {
-
+        InmueblesDataSource.didImprovedProperty = true;
     }
 }

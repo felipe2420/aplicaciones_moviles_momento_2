@@ -6,10 +6,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.aplicaciones_moviles_momento_2.R;
+import com.example.aplicaciones_moviles_momento_2.datasource.InmueblesDataSource;
 import com.example.aplicaciones_moviles_momento_2.models.Oficina;
 
 public class DetailOfficeActivity extends DetailPropertyActivity {
-
     Button btnInstallWifi;
     TextView txtAssemblyRoom;
 
@@ -61,7 +61,13 @@ public class DetailOfficeActivity extends DetailPropertyActivity {
     }
 
     private void installWifi() {
-        selectedProperty.instalarInternet();
-        Toast.makeText(this, "Wifi instalado", Toast.LENGTH_SHORT).show();
+        String message = "El Internet ya fue instalado anteriormente";
+
+        if(!InmueblesDataSource.didImprovedProperty) {
+            selectedProperty.instalarInternet();
+            message = "Internet instalado exitosamente";
+        }
+
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

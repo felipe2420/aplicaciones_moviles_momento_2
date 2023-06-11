@@ -1,5 +1,7 @@
 package com.example.aplicaciones_moviles_momento_2.models;
 
+import com.example.aplicaciones_moviles_momento_2.datasource.InmueblesDataSource;
+
 public class Casa extends Inmueble {
     private final int nrohabitaciones;
 
@@ -15,10 +17,6 @@ public class Casa extends Inmueble {
     }
 
     public void repararJardin() {
-        String message = "El jardín ya fue reparado";
-        if (!didRepairGarden) {
-            didRepairGarden = true;
-            message = "Jardín reparado con exito";
-        }
+        InmueblesDataSource.didImprovedProperty = true;
     }
 }

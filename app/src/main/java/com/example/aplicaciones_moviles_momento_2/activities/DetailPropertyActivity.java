@@ -8,7 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.aplicaciones_moviles_momento_2.R;
-import com.example.aplicaciones_moviles_momento_2.datasource.InmueblesDB;
+import com.example.aplicaciones_moviles_momento_2.datasource.InmueblesDataSource;
 import com.example.aplicaciones_moviles_momento_2.models.Inmueble;
 import com.example.aplicaciones_moviles_momento_2.utils.ValidationException;
 
@@ -26,11 +26,11 @@ public class DetailPropertyActivity extends NavigationActivity {
     }
 
     protected void setOnClickListeners() {
-        btnRent.setOnClickListener(view -> rent());
-        btnFileProperty.setOnClickListener(view -> fileProperty());
+        btnRent.setOnClickListener(view -> tryToPerformRent());
+        btnFileProperty.setOnClickListener(view -> tryToFileProperty());
     }
 
-    private void rent() {
+    private void tryToPerformRent() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(DetailPropertyActivity.this);
         dialog.setTitle(R.string.rent_confirmation_message);
 
@@ -40,7 +40,7 @@ public class DetailPropertyActivity extends NavigationActivity {
         dialog.setPositiveButton(R.string.continue_btn, (dialogInterface, i) -> {
             try {
                 int code = tryToGetCode(input.getText().toString());
-                property.arrendar(code);
+                this.rent(code);
 
                 dialogInterface.dismiss();
             } catch (ValidationException exception) {
@@ -54,7 +54,19 @@ public class DetailPropertyActivity extends NavigationActivity {
         dialog.show();
     }
 
-    private void fileProperty() {
+    private void rent(int code) {
+        String message = "El inmueble ya fue arrendado con este código anteriormente";
+
+        if(InmueblesDataSource.currentRentCode != code) {
+            property.arrendar(code);
+            message = "Inmueble arrendado con exito (" + code + ")";
+        }
+
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
+    }
+
+    private void tryToFileProperty() {
         AlertDialog.Builder builder = new AlertDialog.Builder(DetailPropertyActivity.this);
         builder.setTitle(R.string.file_property_confirmation_message);
 
@@ -64,7 +76,7 @@ public class DetailPropertyActivity extends NavigationActivity {
         builder.setPositiveButton(R.string.continue_btn, (dialogInterface, i) -> {
             try {
                 int code = tryToGetCode(input.getText().toString());
-                property.radicar(code);
+                this.fileProperty(code);
 
                 dialogInterface.dismiss();
             } catch (ValidationException exception) {
@@ -80,6 +92,17 @@ public class DetailPropertyActivity extends NavigationActivity {
         dialog.show();
     }
 
+    private void fileProperty(int code) {
+        String message = "El inmueble ya fue radicado con este código anteriormente";
+
+        if(InmueblesDataSource.currentSettled != code) {
+            property.radicar(code);
+            message = "Inmueble radico con exito (" + code + ")";
+        }
+
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
     private EditText buildDialogEditText() {
         final EditText input = new EditText(DetailPropertyActivity.this);
         input.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -88,7 +111,7 @@ public class DetailPropertyActivity extends NavigationActivity {
     }
 
     protected void loadProperty() {
-        property = InmueblesDB.selectedProperty;
+        property = InmueblesDataSource.selectedProperty;
 
         if(property == null) {
             onErrorCloseScreen();
@@ -113,7 +136,7 @@ public class DetailPropertyActivity extends NavigationActivity {
     }
 
     protected void onErrorCloseScreen() {
-        InmueblesDB.selectedProperty = null;
+        InmueblesDataSource.resetSelection();
         finish();
         Toast.makeText(getApplicationContext(), "Ocurrió un error, por favor inténtalo de nuevo", Toast.LENGTH_SHORT).show();
     }
@@ -121,6 +144,6 @@ public class DetailPropertyActivity extends NavigationActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        InmueblesDB.selectedProperty = null;
+        InmueblesDataSource.resetSelection();
     }
 }

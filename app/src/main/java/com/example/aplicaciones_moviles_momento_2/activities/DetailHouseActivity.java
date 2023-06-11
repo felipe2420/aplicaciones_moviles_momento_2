@@ -6,6 +6,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.aplicaciones_moviles_momento_2.R;
+import com.example.aplicaciones_moviles_momento_2.datasource.InmueblesDataSource;
 import com.example.aplicaciones_moviles_momento_2.models.Casa;
 
 public class DetailHouseActivity extends DetailPropertyActivity {
@@ -56,7 +57,13 @@ public class DetailHouseActivity extends DetailPropertyActivity {
     }
 
     private void repairGarden() {
-        selectedProperty.repararJardin();
-        Toast.makeText(this, "Jardín reparado", Toast.LENGTH_SHORT).show();
+        String message = "El Jardín reparado ya fue reparado anteriormente";
+
+        if(!InmueblesDataSource.didImprovedProperty) {
+            selectedProperty.repararJardin();
+            message = "Jardín reparado exitosamente";
+        }
+
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

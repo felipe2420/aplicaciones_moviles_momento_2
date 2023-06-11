@@ -1,5 +1,7 @@
 package com.example.aplicaciones_moviles_momento_2.models;
 
+import com.example.aplicaciones_moviles_momento_2.datasource.InmueblesDataSource;
+
 public class Inmueble {
     private int codigo;
     private String direccion;
@@ -12,11 +14,11 @@ public class Inmueble {
     }
 
     public void radicar(int codigo) {
-
+        InmueblesDataSource.currentSettled = codigo;
     }
 
     public void arrendar(int codigo) {
-
+        InmueblesDataSource.currentRentCode = codigo;
     }
 
     public int getCodigo() {

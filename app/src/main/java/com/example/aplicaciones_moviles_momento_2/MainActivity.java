@@ -1,12 +1,8 @@
 package com.example.aplicaciones_moviles_momento_2;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import androidx.appcompat.widget.Toolbar;
 
 import com.example.aplicaciones_moviles_momento_2.activities.AddHouseActivity;
 import com.example.aplicaciones_moviles_momento_2.activities.AddOfficeActivity;
@@ -14,7 +10,7 @@ import com.example.aplicaciones_moviles_momento_2.activities.AppActivity;
 import com.example.aplicaciones_moviles_momento_2.activities.DetailHouseActivity;
 import com.example.aplicaciones_moviles_momento_2.activities.DetailOfficeActivity;
 import com.example.aplicaciones_moviles_momento_2.activities.components.PropertyListAdapter;
-import com.example.aplicaciones_moviles_momento_2.datasource.InmueblesDB;
+import com.example.aplicaciones_moviles_momento_2.datasource.InmueblesDataSource;
 import com.example.aplicaciones_moviles_momento_2.models.Casa;
 import com.example.aplicaciones_moviles_momento_2.models.Inmueble;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -53,8 +49,8 @@ public class MainActivity extends AppActivity {
         btnAddOffice.setOnClickListener(view -> navigate(AddOfficeActivity.class));
 
         listView.setOnItemClickListener((parent, view, position, id) -> {
-            Inmueble property = InmueblesDB.data.get(position);
-            InmueblesDB.selectedProperty = property;
+            Inmueble property = InmueblesDataSource.data.get(position);
+            InmueblesDataSource.selectedProperty = property;
 
             if(property instanceof Casa) {
                 navigate(DetailHouseActivity.class);
@@ -65,7 +61,7 @@ public class MainActivity extends AppActivity {
     }
 
     private void setupListView() {
-        adapter = new PropertyListAdapter(MainActivity.this, InmueblesDB.data);
+        adapter = new PropertyListAdapter(MainActivity.this, InmueblesDataSource.data);
 
         listView.setAdapter(adapter);
         listView.setClickable(true);
